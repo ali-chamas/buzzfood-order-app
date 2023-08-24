@@ -2,9 +2,11 @@ import Link from 'next/link'
 import React from 'react'
 import Menu from './Menu'
 import Image from 'next/image'
+import CartIcons from './CartIcons'
+
 
 const Navbar = () => {
-  const user=false
+  
   return (
     <div className='flex justify-between items-center p-5 border border-yellow-400 md:justify-evenly'>
       <div className='hidden md:flex gap-4 text-xl text-yellow-900 '>
@@ -20,9 +22,10 @@ const Navbar = () => {
         <div className='flex justify-center bg-yellow-700 text-white p-2 rounded-3xl'>
           <Image src='/phone.png' alt='' width={25} height={25}/>
           <span>1224</span>
+          
         </div>
-        {user ? <Link href={'/orders'}>Orders</Link>: <Link href={'/login'} className='hover:opacity-70 text-yellow-900'>Login</Link>}
-        <Link href={'/cart'} className='flex gap-1'><Image src='/cart.png' width={25} height={25} alt=''/><span className='text-yellow-500'>cart(1)</span></Link>
+        
+       <CartIcons/>
         
       </div>
       <div className='md:hidden'>

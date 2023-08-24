@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^1.0.1",
+    "@next-auth/prisma-adapter": "^0.4.4-canary.81",
+    "@prisma/client": "^5.1.1",
+    "@tanstack/react-query": "^4.32.6",
     "@types/node": "20.4.9",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
@@ -16,13 +20,17 @@
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
     "next": "13.4.13",
+    "next-auth": "^4.23.0",
     "postcss": "8.4.27",
+    "prisma": "^5.1.1",
     "react": "18.2.0",
     "react-countdown": "^2.3.5",
     "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "18.2.0",
+    "react-focus-on": "^3.9.1",
     "react-icons": "^4.10.1",
     "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "zustand": "^4.4.1"
   }
 }
