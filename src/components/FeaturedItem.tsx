@@ -34,7 +34,7 @@ const FeaturedItem = async() => {
         {
           
           featuredProducts.map((item)=>(
-          <FeaturedRoute item={item}/>
+          <FeaturedRoute key={item.id} item={item}/>
           ))
       }
 

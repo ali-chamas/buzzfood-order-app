@@ -88,7 +88,7 @@ const CategoryDisplay = ({products}:{products:ProductType[]}) => {
           <div className="flex items-center justify-evenly font-bold w-full gap-4">
             <h1 className="text-l uppercase p-2 text-yellow-800">{item.title}</h1>
             {item.options?.map((option)=>(
-                <div className='flex flex-col text-xs '>
+                <div className='flex flex-col text-xs ' key={option.title}>
                 <h3>{option.title}</h3>
                 <h4>{option.additionalPrice}</h4>
                 
