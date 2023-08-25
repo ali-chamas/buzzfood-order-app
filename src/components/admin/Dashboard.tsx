@@ -4,27 +4,29 @@ import Add from './Add'
 import Edit from'./Edit'
 import OfferManagement from './OfferManagement'
 import {BiArrowBack} from 'react-icons/bi'
+import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+
 const Dashboard = () => {
     const [ add,setAdd]=useState(false)
     const [ edit,setEdit]=useState(false)
     const [ offer,setOffer]=useState(false)
+    const router = useRouter()
+    const pathname=usePathname()
+
+    if(edit) router.push(`http://localhost:3000/${pathname}/edit`)
+
   return (
 
     <div>
 
       {add ?
       
-    <div className='h-screen p-5 flex flex-col gap-5'>
+    <div className='h-screen p-5 flex flex-col gap-5 sticky'>
         <button className='text-2xl' onClick={()=>setAdd(false)}> <BiArrowBack/></button>
         <Add/>
     </div>
-    : edit ?
-    <div className='h-[80vh] p-5 flex flex-col gap-5'>
-        <button className='text-2xl' onClick={()=>setEdit(false)}> <BiArrowBack/></button>
-        <Edit/>
-    </div>
-    
-    :
+    : 
 
     offer ?  <div className='h-[80vh] p-5 flex flex-col gap-5'>
     <button className='text-2xl' onClick={()=>setOffer(false)}> <BiArrowBack/></button>
@@ -49,3 +51,4 @@ const Dashboard = () => {
 }
 
 export default Dashboard
+

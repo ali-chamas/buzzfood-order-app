@@ -1,3 +1,4 @@
+
 export type MenuType = {
   id: string;
   slug: string;
@@ -6,6 +7,8 @@ export type MenuType = {
   img?: string;
   color: string;
 }[];
+
+
 
 export type ProductType = {
   id: string;

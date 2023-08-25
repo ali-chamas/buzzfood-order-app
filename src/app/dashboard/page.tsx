@@ -1,7 +1,7 @@
 
 import Login from '@/components/admin/Login'
 import { AdminTypes } from '@/types/types';
-import React, { Children } from 'react'
+import React from 'react'
 
 
 const getAdmin = async()=>{

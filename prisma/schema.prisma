@@ -28,6 +28,7 @@ model Product{
   createdAt DateTime @default(now())
   title String
   img String?
+  desc String?
   price Decimal
   isFeatured Boolean @default(false)
   options Json[]

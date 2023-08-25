@@ -1,168 +1,141 @@
-"use client";
-
-
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-
-type Inputs = {
-  title: string;
-  desc: string;
-  price: number;
-  catSlug: string;
-};
+import Image from 'next/image'
+import React, { useState } from 'react'
 
 type Option = {
   title: string;
   additionalPrice: number;
 };
 
-const AddPage = () => {
-
-  const [inputs, setInputs] = useState<Inputs>({
-    title: "",
-    desc: "",
-    price: 0,
-    catSlug: "",
-  });
-
-  const [option, setOption] = useState<Option>({
-    title: "",
-    additionalPrice: 0,
-  });
-
-  const [options, setOptions] = useState<Option[]>([]);
-  const [file, setFile] = useState<File>();
-
-  const router = useRouter();
+const Add = () => {
 
 
-  
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setInputs((prev) => {
-      return { ...prev, [e.target.name]: e.target.value };
-    });
-  };
-  const changeOption = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setOption((prev) => {
-      return { ...prev, [e.target.name]: e.target.value };
-    });
-  };
+      const [title,setTtile]=useState('')
+      const [desc,setDesc]=useState('')
+      const [price,setPrice]=useState(0)
+      const [option, setOption] = useState<Option>({
+        title: "",
+        additionalPrice: 0,
+      });
+      const [isFeatured,setFeature]=useState(false)
+      const [options, setOptions] = useState<Option[]>([]);
+      const [CatSlug,setCategory]=useState('pizzas')
+      const [img,setImage]=useState('')
 
-  const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    const item = (target.files as FileList)[0];
-    setFile(item);
-  };
 
- 
+        const changeImage=(e: React.ChangeEvent<HTMLInputElement>)=>{
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+          if(e.target.files){
+          const image = e.target.files[0]
+          const reader = new FileReader()
 
-    try {
-      
-      const res = await fetch("http://localhost:3000/api/products", {
+          reader.addEventListener('load',()=>{
+            setImage(String(reader.result))
+
+          })
+          reader.readAsDataURL(image)
+          }
+            
+        }
+
+
+
+      const changeOption = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setOption((prev) => {
+          return { ...prev, [e.target.name]: e.target.value };
+        });
+      };
+
+
+        const handleSubmit=async()=>{
+
+           
+            
+          try{
+          const res = await fetch("http://localhost:3000/api/products", {
         method: "POST",
         body: JSON.stringify({
-          
-          ...inputs,
-          options,
+            title,
+            desc,price,options,CatSlug,isFeatured,
+            img
         }),
       });
 
       const data = await res.json();
-
-      
+    
+     
     } catch (err) {
       console.log(err);
     }
-  };
+      }
+
+
 
   return (
-    <div className="p-4 lg:px-20 xl:px-40 h-[50vh]  flex items-center justify-center text-red-500 my-24">
-      <form onSubmit={handleSubmit} className="flex flex-wrap gap-2 text-sm">
-        <h1 className="text-2xl mb-2 text-gray-300 font-bold">
-          Add New Product
-        </h1>
-        <div className="w-full flex flex-col gap-2 ">
-          <label
-            className="text-sm cursor-pointer flex gap-4 items-center"
-            htmlFor="file"
-          >
-            <Image src="/upload.png" alt="" width={30} height={20} />
-            <span>Upload Image</span>
-          </label>
-          
-        </div>
-        <div className="w-full flex flex-col gap-2 ">
-          <label className="text-sm">Title</label>
-          <input
-            className="ring-1 ring-red-200 p-4 rounded-sm placeholder:text-red-200 outline-none"
-            type="text"
-            placeholder="Bella Napoli"
-            name="title"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="w-full flex flex-col gap-2">
-          <label className="text-sm">Description</label>
-          <textarea
-            rows={3}
-            className="ring-1 ring-red-200 p-4 rounded-sm placeholder:text-red-200 outline-none"
-            placeholder="A timeless favorite with a twist, showcasing a thin crust topped with sweet tomatoes, fresh basil and creamy mozzarella."
-            name="desc"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="w-full flex flex-col gap-2 ">
-          <label className="text-sm">Price</label>
-          <input
-            className="ring-1 ring-red-200 p-4 rounded-sm placeholder:text-red-200 outline-none"
-            type="number"
-            placeholder="29"
-            name="price"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="w-full flex flex-col gap-2 ">
-          <label className="text-sm">Category</label>
-          <input
-            className="ring-1 ring-red-200 p-4 rounded-sm placeholder:text-red-200 outline-none"
-            type="text"
-            placeholder="pizzas"
-            name="catSlug"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="w-full flex flex-col gap-2">
-          <label className="text-sm">Options</label>
-          <div className="flex">
+    
+    <div className='flex flex-col items-center gap-4'>
+        <h1 className='text-yellow-600 font-bold text-2xl'>Add a Porduct</h1>
+      <form className='flex flex-col overflow-y-scroll w-full h-[calc(100vh-8rem)] px-5 '>
+
+          <div className='flex flex-col gap-4 p-5'>
+            <label className='text-yellow-600  font-bold'>title</label>
+            <input 
+            className='p-2 border border-gray-400'
+            type="text" 
+            onChange={(e)=>setTtile(e.target.value)}/>
+            
+          </div>
+
+
+          <div className='flex flex-col gap-4 p-5'>
+            <label className='text-yellow-600  font-bold'>description</label>
+            <input 
+            className='p-2 border border-gray-400'
+            type="text" 
+            onChange={(e)=>setDesc(e.target.value)}/>
+          </div>
+
+
+          <div className='flex flex-col gap-4 p-5'>
+            <label className='text-yellow-600  font-bold'>price</label>
+            <input 
+            className='p-2 border border-gray-400'
+            type="number" 
+            onChange={(e)=>setPrice(Number(e.target.value))
+            }/>
+            
+          </div>
+
+
+          <div className=" p-5 flex flex-col gap-4">
+          <label className="text-yellow-600 font-bold">Options</label>
+          <div className="flex flex-col gap-3">
             <input
-              className="ring-1 ring-red-200 p-4 rounded-sm placeholder:text-red-200 outline-none"
+              className="ring-1 ring-gray-400 p-4 rounded-sm placeholder:text-gray-400 outline-none"
               type="text"
               placeholder="Title"
               name="title"
               onChange={changeOption}
+              
+              
             />
             <input
-              className="ring-1 ring-red-200 p-4 rounded-sm placeholder:text-red-200 outline-none"
+              className="ring-1 ring-gray-400 p-2 rounded-sm placeholder:text-gray-400 outline-none "
               type="number"
               placeholder="Additional Price"
               name="additionalPrice"
               onChange={changeOption}
+              
             />
             <button
               className="bg-gray-500 p-2 text-white"
               onClick={() => setOptions((prev) => [...prev, option])}
+              type='button'
             >
               Add Option
             </button>
           </div>
-          <div className="flex flex-wrap gap-4 mt-2">
+           <div className="flex flex-wrap gap-4 mt-2">
             {options.map((opt) => (
               <div
                 key={opt.title}
@@ -178,16 +151,52 @@ const AddPage = () => {
               </div>
             ))}
           </div>
+          </div>
+
+          <div className="w-full flex flex-col gap-2 p-5">
+          <label
+            className="text-sm cursor-pointer flex gap-4 items-center"
+            htmlFor="file"
+          >
+            <Image src="/upload.png" alt="" width={30} height={20} />
+            <span className='text-red-600 font-bold'>Upload Image</span>
+          </label>
+          <input
+            type="file"
+            onChange={changeImage}
+            id="file"
+            className="hidden"
+          />
         </div>
-        <button
-          type="submit"
-          className="bg-red-500 p-4 text-white w-48 rounded-md relative h-14 flex items-center justify-center"
-        >
-          Submit
-        </button>
+
+        <div className='flex flex-col gap-4 p-5'>
+            <label className='text-yellow-600  font-bold'>Featured?</label>
+            <select  className='text-gray-500 font-bold p-2' onChange={(e)=>setFeature(Boolean(e.target.value))} >
+              <option  value="true" selected>false</option>
+              <option  value="false">true</option>
+              
+            </select>
+          </div>
+
+
+          <div className='flex flex-col gap-4 p-5'>
+            <label className='text-yellow-600  font-bold'>Category</label>
+            <select  className='text-gray-500 font-bold p-2' onChange={(e)=>setCategory(e.target.value)} >
+              <option  value="pizzas" selected>pizzas</option>
+              <option  value="burgers">burgers</option>
+              <option  value="pastas">pastas</option>
+            </select>
+          </div>
+
+          <button type='button'
+          className='p-2 rounded-md bg-yellow-600 hover:opacity-80 text-white my-5 '
+          onClick={handleSubmit}
+          >
+              Upload
+          </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default AddPage;
+export default Add

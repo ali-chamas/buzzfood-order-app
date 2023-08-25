@@ -3,22 +3,27 @@ import { AdminTypes } from '@/types/types'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import Dashboard from './Dashboard'
+
 
 const Login = ({admin}:{admin:AdminTypes[]}) => {
     const [username,setUsername]=useState('')
     const [password,setPassword]=useState('')
     const [error,setError]=useState(false)
     const [loggedIn,setLoggedIn]=useState(false)
+    
   const router = useRouter();
 
-  
+ 
     const handleLogin=()=>{
       if(username && password){
         admin.map((admins)=>
           {
           if(username===admins.username && password === admins.password){
-         router.push(`/dashboard/${admins.id}`)
+            
+         router.push(
+          
+            `/dashboard/${admins.id}`
+         )
           }
           else setError(true)
       })
@@ -29,7 +34,7 @@ const Login = ({admin}:{admin:AdminTypes[]}) => {
     
   return (
     <div className='flex justify-center items-center h-screen '>
-      {!loggedIn ? 
+      {!loggedIn && 
       <form className='flex flex-col gap-5 p-5 m-5 border border-yellow-700 font-bold text-green-700 ' >
         <h1 className='text-4xl text-red-500 mb-8'>Welcome Admin!</h1>
 
@@ -46,10 +51,7 @@ const Login = ({admin}:{admin:AdminTypes[]}) => {
 
         }
       </form>
-      :
-      <div>
-            <Dashboard/>
-      </div>
+     
       }
     </div>
   )
