@@ -15,6 +15,8 @@ const Dashboard = () => {
     const pathname=usePathname()
 
     if(edit) router.push(`http://localhost:3000/${pathname}/edit`)
+    else if(offer){
+  router.push(`http://localhost:3000/${pathname}/offer`)}
 
   return (
 
@@ -28,11 +30,7 @@ const Dashboard = () => {
     </div>
     : 
 
-    offer ?  <div className='h-[80vh] p-5 flex flex-col gap-5'>
-    <button className='text-2xl' onClick={()=>setOffer(false)}> <BiArrowBack/></button>
-    <OfferManagement/>
-</div>
-:
+   
     
     <div className='flex flex-col justify-center items-center gap-8  md:flex-row h-[80vh]'>
 

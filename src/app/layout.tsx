@@ -1,10 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Notification from '@/components/Notification'
+import { ToastContainer } from 'react-toastify';
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import QueryWrapper from '@/components/QueryWrapper'
+import Notification from '@/components/Notification';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,8 +24,9 @@ export default function RootLayout({
       <body className={inter.className}>
         
 <QueryWrapper>
+
         <div>
-       
+       <Notification/>
         <Navbar/>
         {children}
         <Footer/>

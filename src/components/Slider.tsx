@@ -12,7 +12,7 @@ const slides =[
     {id:2,title:'we deliver your order wherever whenever',image:'/slide3.jpg'},
     {id:3,title:'Share your food with family and friends!',image:'/slide1.png'}
 ]
-const slider = () => {
+const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
@@ -27,7 +27,7 @@ const slider = () => {
     setCurrentIndex(newIndex);
   };
 
-  const goToSlide = (slideIndex) => {
+  const goToSlide = (slideIndex:number) => {
     setCurrentIndex(slideIndex);
   };
 
@@ -75,4 +75,4 @@ const slider = () => {
   );
 }
 
-export default slider
+export default Slider

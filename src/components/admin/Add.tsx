@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 type Option = {
   title: string;
   additionalPrice: number;
@@ -40,6 +41,16 @@ const Add = () => {
 
 
 
+        const refreshForm=()=>{
+          setTtile('')
+          setDesc('')
+          setImage('')
+          setFeature(false)
+          setOption({title: "",
+          additionalPrice: 0,})
+          setOptions([])
+        }
+
       const changeOption = (e: React.ChangeEvent<HTMLInputElement>) => {
         setOption((prev) => {
           return { ...prev, [e.target.name]: e.target.value };
@@ -61,8 +72,9 @@ const Add = () => {
         }),
       });
 
+      toast.success('Product created!')
       const data = await res.json();
-    
+      refreshForm()
      
     } catch (err) {
       console.log(err);
@@ -82,7 +94,8 @@ const Add = () => {
             <input 
             className='p-2 border border-gray-400'
             type="text" 
-            onChange={(e)=>setTtile(e.target.value)}/>
+            onChange={(e)=>setTtile(e.target.value)}
+            value={title}/>
             
           </div>
 
@@ -92,7 +105,8 @@ const Add = () => {
             <input 
             className='p-2 border border-gray-400'
             type="text" 
-            onChange={(e)=>setDesc(e.target.value)}/>
+            onChange={(e)=>setDesc(e.target.value)}
+            value={desc}/>
           </div>
 
 
@@ -102,7 +116,9 @@ const Add = () => {
             className='p-2 border border-gray-400'
             type="number" 
             onChange={(e)=>setPrice(Number(e.target.value))
-            }/>
+              
+            }
+            value={price}/>
             
           </div>
 
@@ -116,6 +132,7 @@ const Add = () => {
               placeholder="Title"
               name="title"
               onChange={changeOption}
+              value={option.title}
               
               
             />
@@ -125,7 +142,7 @@ const Add = () => {
               placeholder="Additional Price"
               name="additionalPrice"
               onChange={changeOption}
-              
+              value={option.additionalPrice}
             />
             <button
               className="bg-gray-500 p-2 text-white"
@@ -166,6 +183,7 @@ const Add = () => {
             onChange={changeImage}
             id="file"
             className="hidden"
+            
           />
         </div>
 
@@ -194,6 +212,7 @@ const Add = () => {
           >
               Upload
           </button>
+          <ToastContainer/>
       </form>
     </div>
   )

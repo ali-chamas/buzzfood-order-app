@@ -8,7 +8,7 @@ const FeaturedRoute = ({item}:{item:ProductType}) => {
     const router = useRouter()
   return (
     <div>
-      <div key={item.id} className='w-screen flex flex-col border md:w-[40vw]   items-center gap-5 text-center p-6 hover:bg-amber-50 transition-all duration-300 whatever'>
+      <div key={item.id} className='w-screen flex flex-col border md:w-[40vw]   items-center gap-5 text-center p-6 hover:bg-amber-50 transition-all duration-300 h-full whatever'>
 
 <div>
   {item.img&&

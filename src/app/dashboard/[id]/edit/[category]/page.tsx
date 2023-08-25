@@ -25,7 +25,9 @@ const CategoryPage = async ({params}:Props) => {
 
   const products:ProductType[] = await getData(params.category)
   return (
+    
     <div>
+      <div className='bg-red-500 w-full h-8 text-white flex items-center justify-center py-5'>Admins Dashboard</div>
         <CategoryDisplay products={products}/>
     </div>
   );

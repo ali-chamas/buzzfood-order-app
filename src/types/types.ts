@@ -8,7 +8,10 @@ export type MenuType = {
   color: string;
 }[];
 
-
+export type OfferType={
+  id:string,
+  message:string
+}
 
 export type ProductType = {
   id: string;
