@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:mimomimo123@localhost:5432/buzzfood?schema=public"
+  url      = "postgresql://postgres:mimomimo123@localhost:5432/buzzfood?connect_timeout=300"
 }
 
 
