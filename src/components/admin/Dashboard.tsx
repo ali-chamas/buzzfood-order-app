@@ -1,8 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Add from './Add'
-import Edit from'./Edit'
-import OfferManagement from './OfferManagement'
+
 import {BiArrowBack} from 'react-icons/bi'
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
