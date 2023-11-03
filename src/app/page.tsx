@@ -9,7 +9,7 @@ const page = () => {
     <div >
       
       <SliderParent/>
-      <FeaturedItem/>
+      
       
     </div>
   )
