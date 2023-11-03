@@ -1,6 +1,6 @@
 import React from 'react'
 
-import FeaturedItem from '@/components/FeaturedItem'
+
 
 import SliderParent from '@/components/SliderParent'
 

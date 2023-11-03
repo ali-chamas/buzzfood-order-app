@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         
-<QueryWrapper>
+
 
         <div>
        <Notification/>
@@ -33,7 +33,7 @@ export default function RootLayout({
         </div>
 
         
-        </QueryWrapper>
+        
         
         </body>
     </html>
