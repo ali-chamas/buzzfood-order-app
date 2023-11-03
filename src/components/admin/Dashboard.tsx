@@ -15,7 +15,7 @@ const Dashboard = () => {
 
     if(edit) router.push(`http://localhost:3000/${pathname}/edit`)
     else if(offer){
-  router.push(`http://localhost:3000/${pathname}/offer`)}
+  router.push(`http://localhost:3000//${pathname}/offer`)}
 
   return (
 
