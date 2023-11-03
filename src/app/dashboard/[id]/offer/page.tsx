@@ -3,7 +3,7 @@ import { OfferType } from '@/types/types'
 import React from 'react'
 
 const getOffer=async()=>{
-  const data = await fetch('http://localhost:3000/api/offer',{cache:'no-cache'})
+  const data = await fetch(`${process.env.API_URL}/api/offer`,{cache:'no-cache'})
   if(!data.ok){
     throw new Error('failed')
   }

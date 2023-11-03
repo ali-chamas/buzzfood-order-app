@@ -5,7 +5,7 @@ import React from 'react'
 
 
 const getAdmin = async()=>{
-  const res = await fetch("http://localhost:3000/api/managers",{
+  const res = await fetch(`${process.env.API_URL}/api/managers`,{
     cache:"no-store"
   })
 

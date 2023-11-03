@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 
 const getProduct=async(id:string)=>{
-  const res = await fetch(`http://localhost:3000/api/products/${id}`,{cache:"no-store"})
+  const res = await fetch(`${process.env.API_URL}/api/products/${id}`,{cache:"no-store"})
 
   if(!res.ok){
     throw new Error("failed");

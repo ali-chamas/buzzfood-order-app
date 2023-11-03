@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const deletOffer=async()=>{
-    const data = await fetch('http://localhost:3000/api/offer',{method:'DELETE'}
+    const data = await fetch(`${process.env.API_URL}/api/offer`,{method:'DELETE'}
     
 
     )
@@ -27,7 +27,7 @@ const OfferModify = () => {
            
             
         try{
-        const res = await fetch("http://localhost:3000/api/offer", {
+        const res = await fetch(`${process.env.API_URL}/api/offer`, {
       method: "POST",
       body: JSON.stringify({
          message:message

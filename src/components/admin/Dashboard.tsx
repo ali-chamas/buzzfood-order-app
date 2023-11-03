@@ -13,9 +13,9 @@ const Dashboard = () => {
     const router = useRouter()
     const pathname=usePathname()
 
-    if(edit) router.push(`http://localhost:3000/${pathname}/edit`)
+    if(edit) router.push(`${process.env.API_URL}/${pathname}/edit`)
     else if(offer){
-  router.push(`http://localhost:3000//${pathname}/offer`)}
+  router.push(`${process.env.API_URL}/${pathname}/offer`)}
 
   return (
 

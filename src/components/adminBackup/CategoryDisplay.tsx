@@ -31,7 +31,7 @@ const CategoryDisplay = ({products}:{products:ProductType[]}) => {
     const deleteProd=async(id:string)=>{
         
 
-        const res=await fetch(`http://localhost:3000/api/products/${id}`,{method:'DELETE'})
+        const res=await fetch(`${process.env.API_URL}/api/products/${id}`,{method:'DELETE'})
         if( res.status===200){
             console.log('deleted')
             window.location.reload()
